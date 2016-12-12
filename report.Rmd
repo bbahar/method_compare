@@ -1,0 +1,78 @@
+---
+title: "Method Comparison"
+author: "https://bahar.shinyapps.io/method_compare"
+date: '`r Sys.Date()`'
+output: pdf_document
+---
+
+```{r dataframe, echo=FALSE, comment = '', warning = FALSE, message = FALSE}
+library(mcr)
+library(pander)
+a <- datasetInput()
+if (is.null(a)) {
+return(NULL)} else {
+names(a) <- c("M1", "M2")
+data1 <- mcreg(a$M1, a$M2, error.ratio = input$syx, 
+method.reg = input$regmodel, method.ci = input$cimethod,
+method.bootstrap.ci = input$metbootci,
+mref.name = input$var1, mtest.name = input$var2)
+pander(MCResult.getData(data1), caption = "Uploaded data. X = Reference method Y = Test method")
+}
+```
+
+```{r regression plot, echo=FALSE, results='markup', fig.show='asis'}
+library(mcr)
+a <- datasetInput()
+if (is.null(a)) {
+return(NULL)} else {
+names(a) <- c("M1", "M2")
+data1<- mcreg(a$M1,a$M2, error.ratio = input$syx, 
+method.reg = input$regmodel, method.ci = input$cimethod,
+method.bootstrap.ci = input$metbootci)
+MCResult.plot(data1, ci.area=input$ciarea, 
+add.legend=input$legend, identity=input$identity,
+add.cor=input$addcor, x.lab=input$m1,
+y.lab=input$m2, cor.method=input$cormet, 
+equal.axis = TRUE, add.grid = TRUE)
+}
+```
+
+```{r statistics, echo=FALSE, comment = '', warning = FALSE, message = FALSE}
+library(mcr)
+library(pander)
+a <- datasetInput()
+if (is.null(a)) {
+return(NULL)} else {
+names(a) <- c("M1", "M2")
+data1 <- mcreg(a$M1, a$M2, error.ratio = input$syx, 
+method.reg = input$regmodel, method.ci = input$cimethod,
+method.bootstrap.ci = input$metbootci,
+mref.name = input$var1, mtest.name = input$var2)
+pander(getCoefficients(data1), caption = "Estimates for slope and intercept.")
+}
+```
+
+```{r BA plot, echo=FALSE, results='markup'}
+library(mcr)
+a <- datasetInput()
+if (is.null(a)) {
+return(NULL)} else {
+names(a) <- c("M1", "M2")
+data1 <- mcreg(a$M1, a$M2,
+mref.name = input$m1, mtest.name = input$m2)
+MCResult.plotDifference(data1, plot.type = input$batype, add.grid = TRUE)
+}
+```
+
+
+#### Data is processed using R language^1^, shiny web application framework^2^ and mcr package^3^. shinydashboard^4^, rhandsontable^5^ and pander^6^ are used for website construction. Rmarkdown^7^ is used for converting results in to document files.
+
+##### References and packages:
+
+1. R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. Version: `r getRversion()` URL: https://www.R-project.org
+2. shiny: Web Application Framework for R. Version `r packageDescription("shiny")$Version` URL: http://CRAN.R-project.org/package=shiny
+3. mcr: Method Comparison Regression. Version: `r packageDescription("mcr")$Version` URL: http://CRAN.R-project.org/package=mcr
+4. shinydashboard: Create Dashboards with 'Shiny'. Version: `r packageDescription("shinydashboard")$Version` URL: http://rstudio.github.io/shinydashboard
+5. rhandsontable: Interface to the 'Handsontable.js' Library. Version: `r packageDescription("rhandsontable")$Version` URL: http://jrowen.github.io/rhandsontable
+6. pander: An R Pandoc Writer. Version: `r packageDescription("pander")$Version` URL: http://rapporter.github.io/pander
+7. rmarkdown: Dynamic Documents for R. Version: `r packageDescription("rmarkdown")$Version` URL: http://rmarkdown.rstudio.com
