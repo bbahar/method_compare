@@ -32,8 +32,8 @@ dashboardPage(
       tabItem(tabName = "info",
               h2("Method Comparison Using R and Shiny"),
               br(),
-              h4('This website is a product of R programming language(1) and shiny(2) web application framework. Statistics are based on mcr package(3). Shinydashboard(4), rhandsontable(5) and pander(6) are used for website construction. Rmarkdown(7) is used for converting results in to document files'),
-              br(),
+              h4('This website is a product of R programming language(1) and shiny(2) web application framework. Statistics are based on mcr package(3). Shinydashboard(4), rhandsontable(5) and pander(6) are used for website construction. Rmarkdown(7) is used for converting results into document files.'),
+#              br(),
               h4('How to:'),
               h4('1. Copy/paste or manually enter your data using the "Data" tab and 
                  enter method names.'),
@@ -56,7 +56,10 @@ dashboardPage(
               h5("6. pander: An R Pandoc Writer. 
                  http://rapporter.github.io/pander"),
               h5("7. rmarkdown: Dynamic Documents for R.
-                 http://rmarkdown.rstudio.com")
+                 http://rmarkdown.rstudio.com"),
+              br(),
+              h4('For any questions or concerns please contact:', 
+                 a("burakbaharmd-at-gmail-dot-com", href = "mailto:burakbaharmd@gmail.com"))
               ),
       tabItem(tabName = "data",
               box(title = "Enter Data", status = 'info',
