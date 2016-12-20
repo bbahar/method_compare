@@ -16,7 +16,8 @@ data1 <- mcreg(a$M1, a$M2, error.ratio = input$syx,
 method.reg = input$regmodel, method.ci = input$cimethod,
 method.bootstrap.ci = input$metbootci,
 mref.name = input$var1, mtest.name = input$var2)
-pander(MCResult.getData(data1), caption = "Uploaded data. X = Reference method Y = Test method")
+tname <- paste('X=', input$m1, '; Y=',  input$m2, '; S- Sample No.')
+pander(MCResult.getData(data1), caption = tname)
 }
 ```
 
@@ -48,7 +49,7 @@ data1 <- mcreg(a$M1, a$M2, error.ratio = input$syx,
 method.reg = input$regmodel, method.ci = input$cimethod,
 method.bootstrap.ci = input$metbootci,
 mref.name = input$var1, mtest.name = input$var2)
-pander(getCoefficients(data1), caption = "Estimates for slope and intercept.")
+pander(getCoefficients(data1), caption = "Estimates (EST), standard error (SE) and upper-lower confidence intervals (UCI-LCI) for intercept and slope.")
 }
 ```
 
