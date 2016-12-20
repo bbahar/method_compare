@@ -63,10 +63,10 @@ dashboardPage(
                   rHandsontableOutput("hot")
                   ),
               box(title = 'Enter Method Names', status = 'info',
-                  textInput('m1', label = h4('Reference Method'),
-                            value = 'Method 1'),
-                  textInput('m2', label = h4('Test Method'),
-                            value = 'Method 2')
+                  textInput('m1', label = h4('X'),
+                            value = 'Reference Method'),
+                  textInput('m2', label = h4('Y'),
+                            value = 'Test Method')
                   )
       ),
       tabItem(tabName = "subitem1",
@@ -143,7 +143,7 @@ dashboardPage(
       ),
       tabItem(tabName = "download",
               radioButtons('format', h5('Document format'), 
-                           c('PDF', 'HTML', 'Word'),
+                           c('PDF', 'HTML'),
                            inline = TRUE),
               downloadButton('downloadReport')
               )
