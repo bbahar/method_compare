@@ -8,8 +8,8 @@ shinyServer(function(input, output, session) {
   
   datasetInput <- reactive({
     if (is.null(input$hot)) {
-      mat <- data.frame(Method1=abs(rnorm(10,1,10)), 
-                        Method2=abs(rnorm(10,1,10)))
+      mat <- data.frame('X'=abs(rnorm(10,1,10)), 
+                        'Y'=abs(rnorm(10,1,10)))
     } else {
       mat <- hot_to_r(input$hot)
     }
@@ -72,8 +72,8 @@ shinyServer(function(input, output, session) {
   
   output$downloadReport <- downloadHandler(
     filename = function() {
-      paste('my-report', sep = '.', switch(
-        input$format, PDF = 'pdf', HTML = 'html', Word = 'docx'
+      paste(paste(input$m1,'vs.',input$m2, '@', Sys.Date()), sep = '.', switch(
+        input$format, PDF = 'pdf', HTML = 'html'
       ))
     },
     content = function(file) {
