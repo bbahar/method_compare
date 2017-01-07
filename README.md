@@ -1,2 +1,2 @@
 # method_comparison
-Method Comparison for clinical chemistry
+A website for method comparison and bias estimation for clinical chemistry
