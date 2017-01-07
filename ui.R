@@ -85,7 +85,7 @@ dashboardPage(
               box(title = "Bland-Altman Plot", status='info', width = 8,
                   plotOutput("plot1")
                   ),
-              box(title = "Bland-Altman Options", status='info', width = 4,
+              box(title = "Options", status='info', width = 4,
                   selectInput('batype', h5('Bland-Altman Plot Type'), 
                               choices=list('0.5*(X+Y) vs. Y-X' = 3,
                                            'X vs. Y-X' = 1,
@@ -102,7 +102,7 @@ dashboardPage(
               box(title = "Scatter Plot", status='info', width = 8,
                   plotOutput("plot2")
                   ),
-              box(title = "Scatter Plot Options", status='info', width = 4,
+              box(title = "Options", status='info', width = 4,
                   selectInput('regmodel', h5('Regression Model'), 
                               choices=list('Ordinary Least Square' = 'LinReg',
                                            'Weighted Ordinary Least Square' = 'WLinReg',
