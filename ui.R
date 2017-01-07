@@ -17,7 +17,9 @@ dashboardPage(
       menuItem("Plots", tabName = "plots",
                icon = icon("line-chart", "fa-lg"),
                menuSubItem("Bland-Altman Plot", tabName = "subitem1"),
-               menuSubItem("Scatter Plot", tabName = "subitem2")
+               menuSubItem("Scatter Plot", tabName = "subitem2"),
+               menuSubItem("Estimated Systematic Bias Plot", tabName='subitem4'),
+               menuSubItem("Coefficient Plot", tabName = "subitem3")
                ),
       menuItem("Statistics", tabName = "stats",
                icon = icon("users", "fa-lg")
@@ -30,7 +32,7 @@ dashboardPage(
   dashboardBody(
     tabItems(
       tabItem(tabName = "info",
-              h2("Method Comparison Using R and Shiny"),
+              h2("Method Comparison and Bias Estimation Using R and Shiny"),
               br(),
               h4('This website is a product of R programming language(1) and shiny(2) web application framework. Statistics are based on mcr package(3). Shinydashboard(4), rhandsontable(5) and pander(6) are used for website construction. Rmarkdown(7) is used for converting results into document files.'),
 #              br(),
@@ -43,23 +45,30 @@ dashboardPage(
               br(),
               h4('References and packages:'),
               h5("1. R: A language and environment for statistical computing. 
-                 R Foundation for Statistical Computing, Vienna, Austria. 
-                 https://www.R-project.org"),
-              h5("2. shiny: Web Application Framework for R. 
-                 http://CRAN.R-project.org/package=shiny"),
-              h5("3. mcr: Method Comparison Regression. 
-                 http://CRAN.R-project.org/package=mcr"),
-              h5("4. shinydashboard: Create Dashboards with 'Shiny'. 
-                 http://rstudio.github.io/shinydashboard"),
-              h5("5. rhandsontable: Interface to the 'Handsontable.js' Library. 
-                 http://jrowen.github.io/rhandsontable"),
-              h5("6. pander: An R Pandoc Writer. 
-                 http://rapporter.github.io/pander"),
-              h5("7. rmarkdown: Dynamic Documents for R.
-                 http://rmarkdown.rstudio.com"),
+                 R Foundation for Statistical Computing, Vienna, Austria.",
+                  a('https://www.R-project.org',
+                  href = "https://www.R-project.org")),
+              h5("2. shiny: Web Application Framework for R.",
+                 a("http://CRAN.R-project.org/package=shiny", 
+                  href = "http://CRAN.R-project.org/package=shiny")),
+              h5("3. mcr: Method Comparison Regression.",
+                 a('http://CRAN.R-project.org/package=mcr',
+                  href = "http://CRAN.R-project.org/package=mcr")),
+              h5("4. shinydashboard: Create Dashboards with 'Shiny'.",
+                 a('http://rstudio.github.io/shinydashboard',
+                  href = "http://rstudio.github.io/shinydashboard")),
+              h5("5. rhandsontable: Interface to the 'Handsontable.js' Library.",
+                 a('http://jrowen.github.io/rhandsontable',
+                  href = "http://jrowen.github.io/rhandsontable")),
+              h5("6. pander: An R Pandoc Writer.",
+                 a('http://rapporter.github.io/pander',
+                  href = "http://rapporter.github.io/pander")),
+              h5("7. rmarkdown: Dynamic Documents for R.",
+                 a('http://rmarkdown.rstudio.com',
+                 href = "http://rmarkdown.rstudio.com")),
               br(),
               h4('For any questions or concerns please contact:', 
-                 a("burakbaharmd-at-gmail-dot-com", href = "mailto:burakbaharmd@gmail.com"))
+                 a("Burak Bahar, MD", href = "mailto:burakbaharmd@gmail.com"))
               ),
       tabItem(tabName = "data",
               box(title = "Enter Data", status = 'info',
@@ -106,7 +115,7 @@ dashboardPage(
                     column(6,
                     selectInput('cimethod', h5('CI Method'), 
                                 choices=list('Analytical' = 'analytical',
-                                             'Jacknife' = 'jackknife',
+                                             'Jackknife' = 'jackknife',
                                              'Bootstrap' = 'bootstrap',
                                              'Nested Bootstrap' = 'nestedbootstrap')
                                 )
@@ -141,15 +150,32 @@ dashboardPage(
                     )
                   )
       ),
+      tabItem(tabName = 'subitem3',
+            box(title = 'Coefficient Plot', status='info', width = 12, 
+            plotOutput('plot3')
+              )
+            ),
+      tabItem(tabName = 'subitem4',
+            box(title = '', status = 'info', width = 6,
+            plotOutput('plot4')  
+              ),
+            box(title = '', status = 'info', width = 6,
+                plotOutput('plot5')  
+            )            
+            ),
       tabItem(tabName = "stats",
+              box(title = "Statistics", status='info', width = 12,
               verbatimTextOutput("summary")
+              )
       ),
       tabItem(tabName = "download",
+              box(title = "Download Report", status='info',
               radioButtons('format', h5('Document format'), 
                            c('PDF', 'HTML'),
                            inline = TRUE),
               downloadButton('downloadReport')
               )
+          )
       )
     )
   )
