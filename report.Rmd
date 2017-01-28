@@ -14,7 +14,7 @@ return(NULL)} else {
 names(a) <- c("M1", "M2")
 data1 <- mcreg(a$M1, a$M2, error.ratio = input$syx, 
 method.reg = input$regmodel, method.ci = input$cimethod,
-method.bootstrap.ci = input$metbootci,
+method.bootstrap.ci = input$metbootci, slope.measure="radian",
 mref.name = input$var1, mtest.name = input$var2)
 tname <- paste('X:', input$m1, '; Y:',  input$m2, '; S: Sample No.')
 pander(MCResult.getData(data1), caption = tname, style = "grid")
@@ -29,7 +29,7 @@ return(NULL)} else {
 names(a) <- c("M1", "M2")
 data1<- mcreg(a$M1,a$M2, error.ratio = input$syx, 
 method.reg = input$regmodel, method.ci = input$cimethod,
-method.bootstrap.ci = input$metbootci)
+method.bootstrap.ci = input$metbootci, slope.measure="radian")
 MCResult.plot(data1, ci.area=input$ciarea, 
 add.legend=input$legend, identity=input$identity,
 add.cor=input$addcor, x.lab=input$m1,
@@ -47,7 +47,7 @@ return(NULL)} else {
 names(a) <- c("M1", "M2")
 data1 <- mcreg(a$M1, a$M2, error.ratio = input$syx, 
 method.reg = input$regmodel, method.ci = input$cimethod,
-method.bootstrap.ci = input$metbootci,
+method.bootstrap.ci = input$metbootci, slope.measure="radian",
 mref.name = input$var1, mtest.name = input$var2)
 pander(getCoefficients(data1), caption = "Estimate (EST), standard error (SE) and upper-lower confidence interval (UCI-LCI) for intercept and slope", style = "grid")
 }
@@ -61,7 +61,7 @@ return(NULL)} else {
 names(a) <- c("M1", "M2")
 data1 <- mcreg(a$M1, a$M2, error.ratio = input$syx, 
 method.reg = input$regmodel, method.ci = input$cimethod,
-method.bootstrap.ci = input$metbootci,
+method.bootstrap.ci = input$metbootci, slope.measure="radian",
 mref.name = input$var1, mtest.name = input$var2)
 compareFit(data1)
 }
@@ -76,32 +76,6 @@ names(a) <- c("M1", "M2")
 data1 <- mcreg(a$M1, a$M2,
 mref.name = input$m1, mtest.name = input$m2)
 MCResult.plotDifference(data1, plot.type = input$batype, add.grid = TRUE)
-}
-```
-
-```{r Bias plot, echo=FALSE, results='markup'}
-library(mcr)
-a <- datasetInput()
-if (is.null(a)) {
-return(NULL)} else {
-names(a) <- c("M1", "M2")
-data1<- mcreg(a$M1,a$M2, error.ratio = input$syx, 
-method.reg = input$regmodel, method.ci = input$cimethod,
-method.bootstrap.ci = input$metbootci)
-plotBias(data1, ci.area=input$ciarea, prop=FALSE, xlab=input$m1)
-}
-```
-
-```{r Per Bias plot, echo=FALSE, results='markup'}
-library(mcr)
-a <- datasetInput()
-if (is.null(a)) {
-return(NULL)} else {
-names(a) <- c("M1", "M2")
-data1<- mcreg(a$M1,a$M2, error.ratio = input$syx, 
-method.reg = input$regmodel, method.ci = input$cimethod,
-method.bootstrap.ci = input$metbootci)
-plotBias(data1, ci.area=input$ciarea, prop=TRUE, xlab=input$m1)
 }
 ```
 
