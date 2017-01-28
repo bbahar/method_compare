@@ -38,7 +38,7 @@ shinyServer(function(input, output, session) {
         names(a) <- c("M1", "M2")
         data1 <- mcreg(a$M1,a$M2, error.ratio = input$syx, 
                        method.reg = input$regmodel, method.ci = input$cimethod,
-                       method.bootstrap.ci = input$metbootci)
+                       method.bootstrap.ci = input$metbootci, slope.measure="radian")
         MCResult.plot(data1, ci.area=input$ciarea,
                       add.legend=input$legend, identity=input$identity,
                       add.cor=input$addcor, x.lab=input$m1,
@@ -57,7 +57,7 @@ shinyServer(function(input, output, session) {
         names(a) <- c("M1", "M2")
         data1 <- mcreg(a$M1, a$M2, error.ratio = input$syx, 
                        method.reg = input$regmodel, method.ci = input$cimethod,
-                       method.bootstrap.ci = input$metbootci,
+                       method.bootstrap.ci = input$metbootci, slope.measure="radian",
                        mref.name = input$var1, mtest.name = input$var2)
         compareFit(data1)
         
@@ -65,37 +65,6 @@ shinyServer(function(input, output, session) {
     
   })  
   
-  output$plot4 <- renderPlot({
-    
-    a <- datasetInput()
-    if (is.null(a)) {
-      return(NULL)} else {
-        names(a) <- c("M1", "M2")
-        data1 <- mcreg(a$M1, a$M2, error.ratio = input$syx, 
-                       method.reg = input$regmodel, method.ci = input$cimethod,
-                       method.bootstrap.ci = input$metbootci,
-                       mref.name = input$var1, mtest.name = input$var2)
-        plotBias(data1, ci.area=input$ciarea, prop=FALSE, xlab=input$m1)
-        
-      }
-    
-  })  
-    
-  output$plot5 <- renderPlot({
-    
-    a <- datasetInput()
-    if (is.null(a)) {
-      return(NULL)} else {
-        names(a) <- c("M1", "M2")
-        data1 <- mcreg(a$M1, a$M2, error.ratio = input$syx, 
-                       method.reg = input$regmodel, method.ci = input$cimethod,
-                       method.bootstrap.ci = input$metbootci,
-                       mref.name = input$var1, mtest.name = input$var2)
-        plotBias(data1, ci.area=input$ciarea, prop=TRUE, xlab=input$m1)
-        
-      }
-    
-  })
   
   output$summary <- renderPrint({
     
@@ -105,7 +74,7 @@ shinyServer(function(input, output, session) {
         names(a) <- c("M1", "M2")
         data1 <- mcreg(a$M1,a$M2, error.ratio = input$syx, 
                        method.reg = input$regmodel, method.ci = input$cimethod,
-                       method.bootstrap.ci = input$metbootci,
+                       method.bootstrap.ci = input$metbootci, slope.measure="radian",
                        mref.name = input$m1, mtest.name = input$m2)
         printSummary(data1)
       }
