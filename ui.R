@@ -91,10 +91,9 @@ dashboardPage(
                                            'rank(X) vs. Y-X' = 5,
                                            '0.5*(X+Y) vs. (Y-X)/X' = 4,                                       
                                            'X vs. (Y-X)/X' = 2,
-                                           'rank(X) vs. (Y-X)/X' = 6
-#                                           ,
-#                                           'sqrt(X*Y) vs. Y/X' = 7,
-#                                           '0.5*(X+Y) vs. (Y-X) / (0.5*(X+Y))' = 8
+                                           'rank(X) vs. (Y-X)/X' = 6,
+                                           'sqrt(X*Y) vs. Y/X' = 7,
+                                           '0.5*(X+Y) vs. (Y-X) / (0.5*(X+Y))' = 8
                                            )
                               )
                   )
