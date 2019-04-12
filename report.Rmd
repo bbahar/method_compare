@@ -80,7 +80,7 @@ MCResult.plotDifference(data1, plot.type = input$batype, add.grid = TRUE)
 ```
 
 
-#### Data is processed using R language^1^, shiny web application framework^2^ and mcr package^3^. shinydashboard^4^, rhandsontable^5^ and pander^6^ are used for website construction. Rmarkdown^7^ is used for converting results in to document files.
+#### Data is processed using R language^1^, shiny web application framework^2^ and mcr package^3^. Shinydashboard^4^, rhandsontable^5^ and pander^6^ are used for website construction. Rmarkdown^7^ is used for converting results into PDF and HTML files.
 
 ##### References and packages:
 
